@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}차단하기{% endblock %}
+{% block content %}
+<h2>차단하기</h2>
+
+<!-- 현재 차단된 사용자 목록 표시 -->
+{% if blocked_users %}
+<p><strong>현재 차단된 사용자들:</strong></p>
+<ul>
+  {% for u in blocked_users %}
+    <li>
+      {{ u.blocked_username }}
+      <!-- 차단 해제 버튼 -->
+      <form method="post" style="display:inline;">
+        <input type="hidden" name="unblock_username" value="{{ u.blocked_username }}">
+        <button type="submit">차단 해제</button>
+      </form>
+    </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>현재 차단한 사용자가 없습니다.</p>
+{% endif %}
+
+<hr>
+
+<form method="post">
+  <label>차단할 사용자명:</label><br>
+  <input type="text" name="target_username" required><br><br>
+
+  <button type="submit">차단하기</button>
+</form>
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}회원관리{% endblock %}
+
+{% block content %}
+<h2>회원 관리</h2>
+<table class="user-table">
+  <thead>
+    <tr>
+      <th>사용자 이름</th>
+      <th>포인트</th>
+      <th>작업</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for user in users %}
+      <tr>
+        <td>{{ user[1] }}</td>  <!-- user[1]은 username -->
+        <td>{{ "{:,}".format(user_points.get(user[0], 0)) }}원</td>
+  <!-- user_points에서 해당 user의 포인트 -->
+        <td>
+          <!-- 삭제 버튼을 <form>으로 감싸서 POST로 전송 -->
+          <form action="{{ url_for('delete_userinfo', user_id=user[0]) }}" method="POST" onsubmit="return confirm('정말 삭제하시겠습니까?');">
+            <button type="submit" class="delete-btn">삭제</button>
+          </form>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% block styles %}
+<style>
+  /* 테이블 스타일링 */
+  .user-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .user-table th, .user-table td {
+    padding: 12px 15px;
+    text-align: center;
+    border: 1px solid #ddd;
+  }
+
+  .user-table th {
+    background-color:rgb(33, 94, 236);
+    color: white;
+  }
+
+  .user-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  .user-table tr:hover {
+    background-color: #ddd;
+  }
+
+  /* 삭제 버튼 스타일 */
+  .delete-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+
+  .delete-btn:hover {
+    background-color: #e53935;
+  }
+
+</style>
+{% endblock %}
+
+{% endblock %}

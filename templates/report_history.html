@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}신고 내역{% endblock %}
+
+{% block content %}
+<h2>신고 내역</h2>
+<table class="report-history-table">
+  <thead>
+    <tr>
+      <th>신고자</th>
+      <th>신고 대상</th>
+      <th>신고 사유</th>
+      <th>신고 시간</th>  <!-- 신고 시간 열 추가 -->
+      <th>작업</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for report in reports %}
+      <tr>
+        <td>{{ report.reporter_username }}</td>  <!-- 신고자 -->
+        <td>{{ report.target_username }}</td>    <!-- 신고 대상 -->
+        <td>{{ report.reason }}</td>             <!-- 신고 사유 -->
+        <td>{{ report.timestamp }}</td>          <!-- 신고 시간 -->
+        <td>
+          <!-- 삭제 버튼을 <form>으로 감싸서 POST로 전송 -->
+          <form action="{{ url_for('delete_report', report_id=report.id) }}" method="POST" onsubmit="return confirm('정말 삭제하시겠습니까?');">
+            <button type="submit" class="delete-btn">삭제</button>
+          </form>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% block styles %}
+<style>
+  /* 테이블 스타일링 */
+  .report-history-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .report-history-table th, .report-history-table td {
+    padding: 12px 15px;
+    text-align: center;
+    border: 1px solid #ddd;
+  }
+
+  .report-history-table th {
+    background-color: rgb(33, 94, 236);
+    color: white;
+  }
+
+  .report-history-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  .report-history-table tr:hover {
+    background-color: #ddd;
+  }
+
+  /* 삭제 버튼 스타일 */
+  .delete-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+
+  .delete-btn:hover {
+    background-color: #e53935;
+  }
+
+</style>
+{% endblock %}
+
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}송금 내역{% endblock %}
+
+{% block content %}
+<h2>송금 내역</h2>
+<table class="transfer-history-table">
+  <thead>
+    <tr>
+      <th>보낸 사람</th>
+      <th>받은 사람</th>
+      <th>송금 금액</th>
+      <th>송금 시간</th>
+      <th>작업</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for transfer in transfers %}
+      <tr>
+        <td>{{ transfer.sender_username }}</td>  <!-- 보낸 사람 -->
+        <td>{{ transfer.receiver_username }}</td>  <!-- 받은 사람 -->
+        <td>{{ "{:,}".format(transfer.amount) }}원</td>  <!-- 송금 금액 -->
+        <td>{{ transfer.timestamp }}</td>  <!-- 송금 시간 -->
+        <td>
+          <!-- 삭제 버튼을 <form>으로 감싸서 POST로 전송 -->
+          <form action="{{ url_for('delete_transfer_history', transfer_id=transfer.id) }}" method="POST" onsubmit="return confirm('정말 삭제하시겠습니까?');">
+            <button type="submit" class="delete-btn">삭제</button>
+          </form>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% block styles %}
+<style>
+  /* 테이블 스타일링 */
+  .transfer-history-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .transfer-history-table th, .transfer-history-table td {
+    padding: 12px 15px;
+    text-align: center;
+    border: 1px solid #ddd;
+  }
+
+  .transfer-history-table th {
+    background-color: rgb(33, 94, 236);
+    color: white;
+  }
+
+  .transfer-history-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  .transfer-history-table tr:hover {
+    background-color: #ddd;
+  }
+
+  /* 삭제 버튼 스타일 */
+  .delete-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+
+  .delete-btn:hover {
+    background-color: #e53935;
+  }
+
+</style>
+{% endblock %}
+
+{% endblock %}
