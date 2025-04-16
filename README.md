@@ -22,7 +22,7 @@ conda env create -f enviroments.yaml
 ```
 
 
-서버 프로세스를 실행하려면 아래 명령어를 입력하세요:
+서버 프로세스를 실행하려면 아래 명령어를 입력하세요.
 
 ```bash
 python app.py
