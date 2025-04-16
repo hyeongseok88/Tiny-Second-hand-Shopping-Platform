@@ -19,6 +19,7 @@
 ```bash
 git clone https://github.com/hyeongseok88/Tiny-Second-hand-Shopping-Platform.git
 conda env create -f enviroments.yaml
+conda activate secure_conding
 ```
 
 
