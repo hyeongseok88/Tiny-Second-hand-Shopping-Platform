@@ -26,3 +26,10 @@ conda env create -f enviroments.yaml
 
 ```bash
 python app.py
+```
+관리자 페이지에 접근하려면 아래 계정으로 로그인하세요.
+
+```
+id : admin
+pw: 1234
+```
