@@ -2,10 +2,10 @@
 **시큐어 코딩 과제**
 
 ## 기능 설계
-![](img/1.jpg)
+![](img/1.JPG)
 
 ## 보안 검증 체크리스트
-![](img/2.jpg)
+![](img/2.JPG)
 
 ---
 
@@ -19,6 +19,8 @@
 ```bash
 git clone https://github.com/ugonfor/secure-coding
 conda env create -f enviroments.yaml
+```
+
 
 서버 프로세스를 실행하려면 아래 명령어를 입력하세요:
 
