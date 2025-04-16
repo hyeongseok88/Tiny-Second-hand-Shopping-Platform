@@ -17,7 +17,7 @@
 설치 후 아래 명령어를 실행하여 프로젝트 환경을 설정합니다.
 
 ```bash
-git clone https://github.com/ugonfor/secure-coding
+git clone https://github.com/hyeongseok88/Tiny-Second-hand-Shopping-Platform
 conda env create -f enviroments.yaml
 ```
 
