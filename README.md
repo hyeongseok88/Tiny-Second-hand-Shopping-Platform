@@ -1,5 +1,5 @@
 # Tiny-Second-hand-Shopping-Platform  
-**24반 김형석 시큐어 코딩 과제**
+**[WHS] 24반 김형석-시큐어 코딩 과제**
 
 ## 기능 설계
 ![](img/1.JPG)
